@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "riddle_options",
+  "info": {
+    "singularName": "riddle-option",
+    "pluralName": "riddle-options",
+    "displayName": "RiddleOption",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "choice": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "correct": {
+      "type": "boolean"
+    },
+    "riddle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::riddle.riddle",
+      "inversedBy": "riddle_options"
+    }
+  }
+}

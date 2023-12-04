@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "riddles",
+  "info": {
+    "singularName": "riddle",
+    "pluralName": "riddles",
+    "displayName": "Riddle"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "question": {
+      "type": "text"
+    },
+    "feedbackTrue": {
+      "type": "text"
+    },
+    "feebackFalse": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "image"
+      ]
+    },
+    "riddle_options": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::riddle-option.riddle-option",
+      "mappedBy": "riddle"
+    }
+  }
+}

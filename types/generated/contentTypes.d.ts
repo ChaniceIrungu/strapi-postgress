@@ -362,6 +362,82 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiRiddleRiddle extends Schema.CollectionType {
+  collectionName: 'riddles';
+  info: {
+    singularName: 'riddle';
+    pluralName: 'riddles';
+    displayName: 'Riddle';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    question: Attribute.Text;
+    feedbackTrue: Attribute.Text;
+    feebackFalse: Attribute.Text;
+    type: Attribute.Enumeration<['text', 'image']>;
+    riddle_options: Attribute.Relation<
+      'api::riddle.riddle',
+      'oneToMany',
+      'api::riddle-option.riddle-option'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::riddle.riddle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::riddle.riddle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRiddleOptionRiddleOption extends Schema.CollectionType {
+  collectionName: 'riddle_options';
+  info: {
+    singularName: 'riddle-option';
+    pluralName: 'riddle-options';
+    displayName: 'RiddleOption';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    choice: Attribute.Text;
+    image: Attribute.Media;
+    correct: Attribute.Boolean;
+    riddle: Attribute.Relation<
+      'api::riddle-option.riddle-option',
+      'manyToOne',
+      'api::riddle.riddle'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::riddle-option.riddle-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::riddle-option.riddle-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -687,6 +763,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::riddle.riddle': ApiRiddleRiddle;
+      'api::riddle-option.riddle-option': ApiRiddleOptionRiddleOption;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
