@@ -362,82 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiRiddleRiddle extends Schema.CollectionType {
-  collectionName: 'riddles';
-  info: {
-    singularName: 'riddle';
-    pluralName: 'riddles';
-    displayName: 'Riddle';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    question: Attribute.Text;
-    feedbackTrue: Attribute.Text;
-    feebackFalse: Attribute.Text;
-    type: Attribute.Enumeration<['text', 'image']>;
-    riddle_options: Attribute.Relation<
-      'api::riddle.riddle',
-      'oneToMany',
-      'api::riddle-option.riddle-option'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::riddle.riddle',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::riddle.riddle',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiRiddleOptionRiddleOption extends Schema.CollectionType {
-  collectionName: 'riddle_options';
-  info: {
-    singularName: 'riddle-option';
-    pluralName: 'riddle-options';
-    displayName: 'RiddleOption';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    choice: Attribute.Text;
-    image: Attribute.Media;
-    correct: Attribute.Boolean;
-    riddle: Attribute.Relation<
-      'api::riddle-option.riddle-option',
-      'manyToOne',
-      'api::riddle.riddle'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::riddle-option.riddle-option',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::riddle-option.riddle-option',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -753,6 +677,191 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiRiddleRiddle extends Schema.CollectionType {
+  collectionName: 'riddles';
+  info: {
+    singularName: 'riddle';
+    pluralName: 'riddles';
+    displayName: 'Riddle';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    question: Attribute.Text;
+    feedbackTrue: Attribute.Text;
+    feebackFalse: Attribute.Text;
+    type: Attribute.Enumeration<['text', 'image']>;
+    riddle_options: Attribute.Relation<
+      'api::riddle.riddle',
+      'oneToMany',
+      'api::riddle-option.riddle-option'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::riddle.riddle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::riddle.riddle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRiddleOptionRiddleOption extends Schema.CollectionType {
+  collectionName: 'riddle_options';
+  info: {
+    singularName: 'riddle-option';
+    pluralName: 'riddle-options';
+    displayName: 'RiddleOption';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    choice: Attribute.Text;
+    image: Attribute.Media;
+    correct: Attribute.Boolean;
+    riddle: Attribute.Relation<
+      'api::riddle-option.riddle-option',
+      'manyToOne',
+      'api::riddle.riddle'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::riddle-option.riddle-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::riddle-option.riddle-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiScrambleScramble extends Schema.CollectionType {
+  collectionName: 'scrambles';
+  info: {
+    singularName: 'scramble';
+    pluralName: 'scrambles';
+    displayName: 'Scramble';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    word: Attribute.String;
+    hint: Attribute.String;
+    correctWord: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::scramble.scramble',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::scramble.scramble',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSurveySurvey extends Schema.CollectionType {
+  collectionName: 'surveys';
+  info: {
+    singularName: 'survey';
+    pluralName: 'surveys';
+    displayName: 'Survey';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    question: Attribute.String;
+    slug: Attribute.String;
+    type: Attribute.Enumeration<['input', 'checkbox']>;
+    multiple: Attribute.Boolean;
+    survey_options: Attribute.Relation<
+      'api::survey.survey',
+      'oneToMany',
+      'api::survey-option.survey-option'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::survey.survey',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::survey.survey',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSurveyOptionSurveyOption extends Schema.CollectionType {
+  collectionName: 'survey_options';
+  info: {
+    singularName: 'survey-option';
+    pluralName: 'survey-options';
+    displayName: 'SurveyOption';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    choice: Attribute.String;
+    slug: Attribute.String;
+    recommendations: Attribute.JSON;
+    techRole: Attribute.JSON;
+    survey: Attribute.Relation<
+      'api::survey-option.survey-option',
+      'manyToOne',
+      'api::survey.survey'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::survey-option.survey-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::survey-option.survey-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -763,14 +872,17 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::riddle.riddle': ApiRiddleRiddle;
-      'api::riddle-option.riddle-option': ApiRiddleOptionRiddleOption;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::riddle.riddle': ApiRiddleRiddle;
+      'api::riddle-option.riddle-option': ApiRiddleOptionRiddleOption;
+      'api::scramble.scramble': ApiScrambleScramble;
+      'api::survey.survey': ApiSurveySurvey;
+      'api::survey-option.survey-option': ApiSurveyOptionSurveyOption;
     }
   }
 }

@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "survey_options",
+  "info": {
+    "singularName": "survey-option",
+    "pluralName": "survey-options",
+    "displayName": "SurveyOption"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "choice": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "recommendations": {
+      "type": "json"
+    },
+    "techRole": {
+      "type": "json"
+    },
+    "survey": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::survey.survey",
+      "inversedBy": "survey_options"
+    }
+  }
+}
