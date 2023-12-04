@@ -33,7 +33,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::riddle.riddle",
-      "inversedBy": "riddle_options"
+      "inversedBy": "options"
     }
   }
 }

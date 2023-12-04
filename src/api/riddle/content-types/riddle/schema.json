@@ -27,7 +27,7 @@
         "image"
       ]
     },
-    "riddle_options": {
+    "options": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::riddle-option.riddle-option",

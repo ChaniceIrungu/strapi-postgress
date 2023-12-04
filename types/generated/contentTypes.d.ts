@@ -692,7 +692,7 @@ export interface ApiRiddleRiddle extends Schema.CollectionType {
     feedbackTrue: Attribute.Text;
     feebackFalse: Attribute.Text;
     type: Attribute.Enumeration<['text', 'image']>;
-    riddle_options: Attribute.Relation<
+    options: Attribute.Relation<
       'api::riddle.riddle',
       'oneToMany',
       'api::riddle-option.riddle-option'
