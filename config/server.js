@@ -3,9 +3,9 @@ module.exports = ({ env }) => ({
   port: env.int("PORT", 1337),
   app: {
     keys: env.array("APP_KEYS"),
-    proxy:true,
+    // proxy: true,
   },
-  url: "https://quest-postgress.onrender.com",
+  // url: "https://quest-postgress.onrender.com",
   webhooks: {
     populateRelations: env.bool("WEBHOOKS_POPULATE_RELATIONS", false),
   },
