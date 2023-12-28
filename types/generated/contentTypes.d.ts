@@ -721,6 +721,69 @@ export interface PluginStrapiGoogleAuthGoogleCredential
   };
 }
 
+export interface ApiActiveUserActiveUser extends Schema.CollectionType {
+  collectionName: 'active_users';
+  info: {
+    singularName: 'active-user';
+    pluralName: 'active-users';
+    displayName: 'Active User';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    users: Attribute.String & Attribute.Unique;
+    socketid: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::active-user.active-user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::active-user.active-user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMessageMessage extends Schema.CollectionType {
+  collectionName: 'messages';
+  info: {
+    singularName: 'message';
+    pluralName: 'messages';
+    displayName: 'Message';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Attribute.String;
+    message: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::message.message',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::message.message',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRiddleRiddle extends Schema.CollectionType {
   collectionName: 'riddles';
   info: {
@@ -923,6 +986,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::strapi-google-auth.google-credential': PluginStrapiGoogleAuthGoogleCredential;
+      'api::active-user.active-user': ApiActiveUserActiveUser;
+      'api::message.message': ApiMessageMessage;
       'api::riddle.riddle': ApiRiddleRiddle;
       'api::riddle-option.riddle-option': ApiRiddleOptionRiddleOption;
       'api::scramble.scramble': ApiScrambleScramble;
